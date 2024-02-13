@@ -15,17 +15,7 @@ class ContactUs(models.Model):
         return f'{self.name}'
 
 
-class Reviews(models.Model):
-    full_name = models.CharField(max_length=255)
-    subtitle = models.CharField(max_length=255)
-    review_text = models.TextField()
 
-    class Meta:
-        verbose_name = _("review")
-        verbose_name_plural = _("reviews")
-
-    def __str__(self):
-        return f'{self.full_name}'
 
 
 class FAQ(models.Model):
@@ -40,13 +30,13 @@ class FAQ(models.Model):
         return f'{self.title}'
 
 
-class Image(models.Model):
+class Gallery(models.Model):
     image = models.ImageField(upload_to='gallery_images/')
     to_show = models.BooleanField()
 
     class Meta:
-        verbose_name = _("image")
-        verbose_name_plural = _("images")
+        verbose_name = _("Gallery")
+        verbose_name_plural = _("Gallerys")
 
     def __str__(self):
         return f'{self.to_show}'

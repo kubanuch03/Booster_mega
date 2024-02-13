@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "app_courses",
     "app_events",
     "app_articles",
+    "app_reviews",
     "app_miscellaneous"
 ]
 
