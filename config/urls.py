@@ -17,7 +17,6 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from .views import custom_logout
 
 from drf_spectacular.views import (
     SpectacularAPIView,
@@ -27,11 +26,15 @@ from drf_spectacular.views import (
 
 urlpatterns = [
     path("admin/", admin.site.urls,name='admin'),
-    # path('admin/logout/', custom_logout, name='logout'),
+    path('admin/logout/', admin.site.logout, name='logout'),
 
     # path("users/", include("app_users.urls")),
     path("articles/", include("app_articles.urls")),
     path("reviews/", include("app_reviews.urls")),
+    path("events/", include("app_events.urls")),
+    path("courses/", include("app_courses.urls")),
+    path("miscellaneous/", include("app_miscellaneous.urls")),
+
 
     # swagger
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
