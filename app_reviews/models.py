@@ -11,5 +11,5 @@ class Reviews(models.Model):
         return self.full_name
     
     class Meta:
-        verbose_name = 'Review'
-        verbose_name_plural = 'Reviews'
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'

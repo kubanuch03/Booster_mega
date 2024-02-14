@@ -9,8 +9,8 @@ class CourseTeacher(models.Model):
     image = models.ImageField(upload_to='teacher_images/')
 
     class Meta:
-        verbose_name = _("course_teacher")
-        verbose_name_plural = _("course_teachers")
+        verbose_name = _("Преподователь")
+        verbose_name_plural = _("Преподователи")
 
     def __str__(self):
         return f'{self.first_name}'
@@ -20,8 +20,8 @@ class CourseDirection(models.Model):
     name = models.CharField(max_length=255)
 
     class Meta:
-        verbose_name = _("course_direction")
-        verbose_name_plural = _("course_directions")
+        verbose_name = _("Направление")
+        verbose_name_plural = _("Направления")
 
     def __str__(self):
         return f'{self.name}'
@@ -45,8 +45,8 @@ class Course(models.Model):
     teacher = models.ForeignKey(CourseTeacher, on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = _("course")
-        verbose_name_plural = _("courses")
+        verbose_name = _("Курс")
+        verbose_name_plural = _("Курсы")
 
     def __str__(self):
         return f'{self.name}'
@@ -58,8 +58,8 @@ class MajorBenefit(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = _("major_benefit")
-        verbose_name_plural = _("major_benefits")
+        verbose_name = _("Плюсы Профессии")
+        verbose_name_plural = _("Плюссы Профессии")
 
     def __str__(self):
         return f'{self.name}'
@@ -71,8 +71,8 @@ class EducationBenefit(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = _("education_benefit")
-        verbose_name_plural = _("education_benefits")
+        verbose_name = _("Плюсы Курса")
+        verbose_name_plural = _("Плюсы Курса")
 
     def __str__(self):
         return f'{self.name}'
@@ -108,8 +108,8 @@ class TeacherTechnology(models.Model):
     teachers = models.ManyToManyField(CourseTeacher)
 
     class Meta:
-        verbose_name = _("teacher_technology")
-        verbose_name_plural = _("teacher_technologies")
+        verbose_name = _("Технология Преподователя")
+        verbose_name_plural = _("Технологии Преподователей")
 
     def __str__(self):
         return f'{self.name}'

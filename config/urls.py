@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-
+from .views import custom_logout
 
 from drf_spectacular.views import (
     SpectacularAPIView,
@@ -26,7 +26,8 @@ from drf_spectacular.views import (
 )
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("admin/", admin.site.urls,name='admin'),
+    # path('admin/logout/', custom_logout, name='logout'),
 
     # path("users/", include("app_users.urls")),
     path("articles/", include("app_articles.urls")),

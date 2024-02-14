@@ -1,3 +1,17 @@
-from django.shortcuts import render
+from rest_framework import permissions, generics
 
-# Create your views here.
+from .models import Events
+from .serializers import EventSerializer
+
+
+
+
+
+
+
+
+#User
+class EventListApiView(generics.ListAPIView):
+    queryset = Events.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = [permissions.AllowAny]

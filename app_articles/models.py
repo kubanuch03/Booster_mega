@@ -10,8 +10,8 @@ class Articles(models.Model):
     date_created = models.DateField()
 
     class Meta:
-        verbose_name = _("article")
-        verbose_name_plural = _("articles")
+        verbose_name = _("Новость")
+        verbose_name_plural = _("Новости")
 
     def __str__(self):
         return f'{self.title}'

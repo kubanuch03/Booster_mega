@@ -8,14 +8,11 @@ class ContactUs(models.Model):
     is_agreed = models.BooleanField()
 
     class Meta:
-        verbose_name = _("contact_us")
-        verbose_name_plural = _("contact_us")
+        verbose_name = ("Контакты")
+        verbose_name_plural = ("Контакты")
 
     def __str__(self):
         return f'{self.name}'
-
-
-
 
 
 class FAQ(models.Model):
@@ -35,8 +32,8 @@ class Gallery(models.Model):
     to_show = models.BooleanField()
 
     class Meta:
-        verbose_name = _("Gallery")
-        verbose_name_plural = _("Gallerys")
+        verbose_name = _("Галерея")
+        verbose_name_plural = _("Галереи")
 
     def __str__(self):
         return f'{self.to_show}'

@@ -13,8 +13,8 @@ class Events(models.Model):
     free_spots = models.IntegerField()
 
     class Meta:
-        verbose_name = _("event")
-        verbose_name_plural = _("events")
+        verbose_name = _("Ивент")
+        verbose_name_plural = _("Ивенты")
 
     def __str__(self):
         return f'{self.name}'
