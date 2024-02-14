@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import *
 
-urlpattern = [
+urlpatterns = [
 
     # Course Teacher
     path('list/course/teacher/',CourseTeacherListApiView.as_view(),name='list-course-teacher'),
