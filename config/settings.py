@@ -169,18 +169,12 @@ CORS_ALLOW_METHODS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://dev.d1bfpcy724oex4.amplifyapp.com",
-    "https://dev.d2np2u5lc6ppxj.amplifyapp.com",
-    
-    "https://aitim-trade-backend.net",
+    "http://18.199.81.123"
     "http://localhost:3000",
 ]
 
 CORS_ALLOW_ORIGINS = [
-    "https://dev.d1bfpcy724oex4.amplifyapp.com",
-    "https://dev.d2np2u5lc6ppxj.amplifyapp.com",
-
-    "https://aitim-trade-backend.net",
+    "http://18.199.81.123"
     "http://localhost:3000",
 ]
 CORS_ALLOW_HEADERS = [
