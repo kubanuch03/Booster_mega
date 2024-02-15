@@ -84,8 +84,8 @@ class CourseBlock(models.Model):
     course_direction = models.ForeignKey(CourseDirection, on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = _("course_block")
-        verbose_name_plural = _("course_blocks")
+        verbose_name = _("Блок Стеков")
+        verbose_name_plural = _("Блок Стеков")
 
     def __str__(self):
         return f'{self.name}'
@@ -96,8 +96,8 @@ class BlockSubheading(models.Model):
     block = models.ForeignKey(CourseBlock, on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = _("block_subheading")
-        verbose_name_plural = _("block_subheadings")
+        verbose_name = _("Стеки")
+        verbose_name_plural = _("Стеки")
 
     def __str__(self):
         return f'{self.name}'
