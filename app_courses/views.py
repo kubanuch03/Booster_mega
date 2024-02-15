@@ -58,6 +58,13 @@ class CourseListApiView(generics.ListAPIView):
     serializer_class = CourseSerializer
     permission_classes = [permissions.AllowAny]
 
+    def get_queryset(self):
+        queryset = Course.objects.all()
+        name = self.request.query_params.get('name', None)
+        if name:
+            queryset = queryset.filter(name__icontains=name)
+        return queryset
+
 
 class CourseDetailApiView(generics.RetrieveAPIView):
     queryset = Course.objects.all()

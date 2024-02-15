@@ -18,7 +18,7 @@ class CourseDirectionAdmin(admin.ModelAdmin):
 class CourseAdmin(admin.ModelAdmin):
     list_display = ['id','name','direction','duration','start_date','teacher']
     list_filter = ['id','direction','teacher','lesson_duration']
-    search_fields = ['id','name','lesson_duration','teacher']
+    search_fields = ['id','name',]
 
 
 class MajorBenefitAdmin(admin.ModelAdmin):
