@@ -15,8 +15,6 @@ COPY requirement.txt /app/
 RUN pip install  gunicorn --no-cache-dir && pip install --no-cache-dir -r requirement.txt
 
 
-# Обновление пакетов и установка Redis
-RUN apt-get update && apt-get install -y redis-server
 
 
 COPY . /app/
