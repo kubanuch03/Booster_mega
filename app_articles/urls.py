@@ -8,6 +8,6 @@ from .views import (
 urlpatterns = [
     path('list/articles/', ArticleListsApiView.as_view(),name='list-articles'),
     path('detail/articles/', ArticleDetailApiView.as_view(),name='detail-articles'),
-    path('create/articles/', ArticlesCreateApiView.as_view(),name='create-articles'),
-    path('rud/articles/<int:pk>/', ArticlesRUDApiView.as_view(),name='rud-articles'),
+    # path('create/articles/', ArticlesCreateApiView.as_view(),name='create-articles'),
+    # path('rud/articles/<int:pk>/', ArticlesRUDApiView.as_view(),name='rud-articles'),
 ]

@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from decouple import config
-from .jazzmin_settings import JAZZMIN_SETTINGS, JAZZMIN_UI_TWEAKS
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -151,8 +152,14 @@ MEDIA_ROOT = "/usr/src/app/media"
 
 
 # ===  Jazmin ==========
+from .jazzmin.jazzmin_settings import JAZZMIN_SETTINGS
+from .jazzmin.jazzmin_ui_tweaks import  JAZZMIN_UI_TWEAKS
+
 JAZZMIN_SETTINGS
 JAZZMIN_UI_TWEAKS
+
+
+
 
 SPECTACULAR_SETTINGS = {
     "TITILE": "Booster APIS",
