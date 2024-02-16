@@ -66,7 +66,7 @@ class CourseDirectionListApiView(generics.ListAPIView):
     @extend_schema(
         summary="Все Курсы направления",
         description=" Запрос на Все курсы направления ",
-        responses={200: CourseTeacherSerializer(many=True)},
+        responses={200: CourseDirectionSerializer(many=True)},
         operation_id="list_course_direction",
         
     )
@@ -82,7 +82,7 @@ class CourseDirectionDetailApiView(generics.RetrieveAPIView):
     @extend_schema(
         summary="Детальная информация о курс Направления",
         description="Детальная информация о  курс Направления",
-        responses={200: CourseTeacherSerializer()},
+        responses={200: CourseDirectionSerializer()},
         operation_id="detail_course_direction",
         
     )
@@ -100,7 +100,7 @@ class CourseListApiView(generics.ListAPIView):
     @extend_schema(
         summary="Все Курсы ",
         description=" Запрос на Все Курсы  ",
-        responses={200: CourseTeacherSerializer(many=True)},
+        responses={200: CourseSerializer(many=True)},
         operation_id="list_course",
         
     )
@@ -116,7 +116,7 @@ class CourseDetailApiView(generics.RetrieveAPIView):
     @extend_schema(
         summary="Детальная информация о курсе",
         description="Детальная информация о  курсе",
-        responses={200: CourseTeacherSerializer()},
+        responses={200: CourseSerializer()},
         operation_id="detail_course",
         
     )
@@ -134,8 +134,7 @@ class MajorBenefitListApiView(generics.ListAPIView):
 
     @extend_schema(
         summary="Все Плюсы профессии ",
-        description=" Запрос на Все Плюсы профессии  ",
-        responses={200: CourseTeacherSerializer(many=True)},
+        responses={200: MajorBenefitSerializer(many=True)},
         operation_id="list_major_course",
         
     )
@@ -151,7 +150,7 @@ class MajorBenefitDetailApiView(generics.RetrieveAPIView):
     @extend_schema(
         summary="Детальная информация о о плюс профессии",
         description="Детальная информация о плюс профессии",
-        responses={200: CourseTeacherSerializer()},
+        responses={200: MajorBenefitSerializer()},
         operation_id="detail_major_course",
         
     )
@@ -186,7 +185,7 @@ class EducationBenefitDetailApiView(generics.RetrieveAPIView):
     @extend_schema(
         summary="Детальная информация о о плюс курса",
         description="Детальная информация о плюс курса",
-        responses={200: CourseTeacherSerializer()},
+        responses={200: EducationBenefitSerializer()},
         operation_id="detail_education_course",
         
     )
@@ -204,7 +203,7 @@ class CourseBlockListApiView(generics.ListAPIView):
     @extend_schema(
         summary="Все Блок Курса ",
         description=" Запрос на Все Блок Курса  ",
-        responses={200: CourseTeacherSerializer(many=True)},
+        responses={200: CourseBlockSerializer(many=True)},
         operation_id="list_block_course",
         
     )
@@ -220,7 +219,7 @@ class CourseBlockDetailApiView(generics.RetrieveAPIView):
     @extend_schema(
         summary="Детальная информация Блок Курса",
         description="Детальная информация Блок Курса",
-        responses={200: CourseTeacherSerializer()},
+        responses={200: CourseBlockSerializer()},
         operation_id="detail_sub_block_course",
         
     )
@@ -238,7 +237,7 @@ class BlockSubheadingListApiView(generics.ListAPIView):
     @extend_schema(
         summary="Все Под Блок Курса ",
         description=" Запрос на Все Под Блок Курса  ",
-        responses={200: CourseTeacherSerializer(many=True)},
+        responses={200: BlockSubheadingSerializer(many=True)},
         operation_id="list_sub_block_course",
         
     )
@@ -254,7 +253,7 @@ class BlockSubheadingDetailApiView(generics.RetrieveAPIView):
     @extend_schema(
         summary="Детальная информация Под Блок Курса",
         description="Детальная информация Под Блок Курса",
-        responses={200: CourseTeacherSerializer()},
+        responses={200: BlockSubheadingSerializer()},
         operation_id="detail_sub_block_course_get",
         
     )
@@ -271,7 +270,7 @@ class TeacherTechnologyListApiView(generics.ListAPIView):
     @extend_schema(
         summary="Все Технологии Проподователей ",
         description=" Запрос на Все Технологии Проподователей ",
-        responses={200: CourseTeacherSerializer(many=True)},
+        responses={200: TeacherTechnologySerializer(many=True)},
         operation_id="list_teacher_technology_course",
         
     )
@@ -286,7 +285,7 @@ class TeacherTechnologyDetailApiView(generics.RetrieveAPIView):
     @extend_schema(
         summary="Детальная информация Технологии Проподователя",
         description="Детальная информация Технологии Проподователя",
-        responses={200: CourseTeacherSerializer()},
+        responses={200: TeacherTechnologySerializer()},
         operation_id="detail_teacher_technology_course",
         
     )

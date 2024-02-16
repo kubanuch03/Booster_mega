@@ -64,7 +64,7 @@ class FAQListApiView(generics.ListAPIView):
     @extend_schema(
         summary="Все FAQ",
         description=" Запрос на Все FAQ ",
-        responses={200: ContactUsSerializer(many=True)},
+        responses={200: FAQSerializer(many=True)},
         operation_id="list_faq",
         
     )
@@ -83,7 +83,7 @@ class GalleryListApiView(generics.ListAPIView):
     @extend_schema(
         summary="Все Галереи",
         description=" Запрос на Все Галареи ",
-        responses={200: ContactUsSerializer(many=True)},
+        responses={200: GallerySerializer(many=True)},
         operation_id="list_gallery",
         
     )

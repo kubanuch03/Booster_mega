@@ -29,7 +29,7 @@ class CourseDirectionSerializer(serializers.ModelSerializer):
 
 
 class CourseSerializer(serializers.ModelSerializer):
-
+    name = serializers.CharField(write_only=True)
     class Meta:
         model = Course
         fields = ['id','name','image','extended_image','duration','monthly_price',
