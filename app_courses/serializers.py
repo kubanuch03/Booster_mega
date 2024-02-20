@@ -29,28 +29,30 @@ class CourseDirectionSerializer(serializers.ModelSerializer):
 
 
 class CourseSerializer(serializers.ModelSerializer):
+    teacher_name = serializers.CharField(source='teacher.first_name')
+    direction_name = serializers.CharField(source='direction.name')
     name = serializers.CharField(write_only=True)
     class Meta:
         model = Course
         fields = ['id','name','image','extended_image','duration','monthly_price',
                   'installment_price','lesson_duration','start_date','timetable',
                   'free_spots','description_title','major_description','major_image',
-                  'direction','teacher'
+                  'direction','direction_name','teacher','teacher_name',
                   ]
 
 
 class MajorBenefitSerializer(serializers.ModelSerializer):
-
+    course_name = serializers.CharField(source='course.name')
     class Meta:
         model = MajorBenefit
-        fields = ['id','name','image','course',]
+        fields = ['id','name','image','course','course_name']
 
 
 class EducationBenefitSerializer(serializers.ModelSerializer):
-
+    course_name = serializers.CharField(source='course.name')
     class Meta:
         model = EducationBenefit
-        fields = ['id','name','image','course',]
+        fields = ['id','name','image','course','course_name']
 
 
 class CourseBlockSerializer(serializers.ModelSerializer):
@@ -61,14 +63,14 @@ class CourseBlockSerializer(serializers.ModelSerializer):
 
 
 class BlockSubheadingSerializer(serializers.ModelSerializer):
+    block_name = serializers.CharField(source='block.name')
 
     class Meta:
         model = BlockSubheading
-        fields = ['id','name','block',]
+        fields = ['id','name','block','block_name',]
 
 
 class TeacherTechnologySerializer(serializers.ModelSerializer):
-
     class Meta:
         model = TeacherTechnology
         fields = ['id','name','teachers',]

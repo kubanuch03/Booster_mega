@@ -32,3 +32,9 @@ class CustomUser(AbstractBaseUser):
     class Meta:
         verbose_name = "Пользователь"
         verbose_name_plural = "Пользователи"
+        indexes = [
+            models.Index(fields=['id']), 
+            models.Index(fields=['email']), 
+            models.Index(fields=['username']), 
+        ]
+

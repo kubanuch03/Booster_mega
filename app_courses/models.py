@@ -47,6 +47,10 @@ class Course(models.Model):
     class Meta:
         verbose_name = _("Курс")
         verbose_name_plural = _("Курсы")
+        indexes = [
+            models.Index(fields=['id']), 
+            models.Index(fields=['name']),  
+        ]
 
     def __str__(self):
         return f'{self.name}'
@@ -60,6 +64,10 @@ class MajorBenefit(models.Model):
     class Meta:
         verbose_name = _("Плюсы Профессии")
         verbose_name_plural = _("Плюссы Профессии")
+        indexes = [
+            models.Index(fields=['id']), 
+            models.Index(fields=['name']),  
+        ]
 
     def __str__(self):
         return f'{self.name}'
@@ -73,6 +81,10 @@ class EducationBenefit(models.Model):
     class Meta:
         verbose_name = _("Плюсы Курса")
         verbose_name_plural = _("Плюсы Курса")
+        indexes = [
+            models.Index(fields=['id']), 
+            models.Index(fields=['name']),  
+        ]
 
     def __str__(self):
         return f'{self.name}'
@@ -86,6 +98,10 @@ class CourseBlock(models.Model):
     class Meta:
         verbose_name = _("Блок Стеков")
         verbose_name_plural = _("Блок Стеков")
+        indexes = [
+            models.Index(fields=['id']), 
+            models.Index(fields=['name']),  
+        ]
 
     def __str__(self):
         return f'{self.name}'
@@ -98,6 +114,10 @@ class BlockSubheading(models.Model):
     class Meta:
         verbose_name = _("Стеки")
         verbose_name_plural = _("Стеки")
+        indexes = [
+            models.Index(fields=['id']), 
+            models.Index(fields=['name']),  
+        ]
 
     def __str__(self):
         return f'{self.name}'
@@ -106,6 +126,10 @@ class BlockSubheading(models.Model):
 class TeacherTechnology(models.Model):
     name = models.CharField(max_length=255)
     teachers = models.ManyToManyField(CourseTeacher)
+    indexes = [
+            models.Index(fields=['id']), 
+            models.Index(fields=['name']),  
+        ]
 
     class Meta:
         verbose_name = _("Технология Преподователя")

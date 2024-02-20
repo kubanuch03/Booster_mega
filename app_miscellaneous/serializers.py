@@ -10,7 +10,7 @@ class ContactUsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ContactUs
-        fields = ['id','name','phone_number','is_agreed',]
+        fields = ['id','name','phone_number','is_agreed']
 
 
 

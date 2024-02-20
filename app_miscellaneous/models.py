@@ -10,6 +10,10 @@ class ContactUs(models.Model):
     class Meta:
         verbose_name = ("Контакты")
         verbose_name_plural = ("Контакты")
+        indexes = [
+            models.Index(fields=['id']), 
+            models.Index(fields=['name']),  
+        ]
 
     def __str__(self):
         return f'{self.name}'
@@ -22,6 +26,10 @@ class FAQ(models.Model):
     class Meta:
         verbose_name = _("FAQ")
         verbose_name_plural = _("FAQ")
+        indexes = [
+            models.Index(fields=['id']), 
+            models.Index(fields=['title']),  
+        ]
 
     def __str__(self):
         return f'{self.title}'
@@ -34,6 +42,9 @@ class Gallery(models.Model):
     class Meta:
         verbose_name = _("Галерея")
         verbose_name_plural = _("Галереи")
+        indexes = [
+            models.Index(fields=['id']), 
+        ]
 
     def __str__(self):
         return f'{self.to_show}'

@@ -14,3 +14,7 @@ class Reviews(models.Model):
     class Meta:
         verbose_name = 'Отзыв'
         verbose_name_plural = 'Отзывы'
+        indexes = [
+            models.Index(fields=['id']), 
+            models.Index(fields=['full_name']), 
+        ]

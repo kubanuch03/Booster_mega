@@ -15,6 +15,10 @@ class Events(models.Model):
     class Meta:
         verbose_name = _("Ивент")
         verbose_name_plural = _("Ивенты")
+        indexes = [
+            models.Index(fields=['id']), 
+            models.Index(fields=['name']),  
+        ]
 
     def __str__(self):
         return f'{self.name}'

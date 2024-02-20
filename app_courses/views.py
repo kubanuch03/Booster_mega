@@ -1,5 +1,7 @@
 from rest_framework import permissions, generics
-from drf_spectacular.utils import extend_schema,OpenApiParameter
+from drf_spectacular.utils import extend_schema
+
+from django.db.models import Prefetch
 
 from .models import (
     CourseTeacher,
@@ -97,6 +99,11 @@ class CourseListApiView(generics.ListAPIView):
     serializer_class = CourseSerializer
     permission_classes = [permissions.AllowAny]
 
+    def get_queryset(self):
+        queryset = Course.objects.select_related('direction').all()
+        queryset = queryset.prefetch_related(Prefetch('teacher',queryset=CourseTeacher.objects.all()))
+        return super().get_queryset()
+
     @extend_schema(
         summary="Все Курсы ",
         description=" Запрос на Все Курсы  ",
@@ -132,6 +139,10 @@ class MajorBenefitListApiView(generics.ListAPIView):
     serializer_class = MajorBenefitSerializer
     permission_classes = [permissions.AllowAny]
 
+    def get_queryset(self):
+        queryset = MajorBenefit.objects.select_related('course').all()
+        return queryset
+
     @extend_schema(
         summary="Все Плюсы профессии ",
         responses={200: MajorBenefitSerializer(many=True)},
@@ -166,6 +177,10 @@ class EducationBenefitListApiView(generics.ListAPIView):
     serializer_class = EducationBenefitSerializer
     permission_classes = [permissions.AllowAny]
 
+    def get_queryset(self):
+        queryset = EducationBenefit.objects.select_related('course')
+        return queryset
+
     @extend_schema(
         summary="Все Плюсы курса ",
         description=" Запрос на Все Плюсы Курсы  ",
@@ -199,6 +214,10 @@ class CourseBlockListApiView(generics.ListAPIView):
     queryset = CourseBlock.objects.all()
     serializer_class = CourseBlockSerializer
     permission_classes = [permissions.AllowAny]
+
+    def get_queryset(self):
+        queryset = CourseBlock.objects.select_related('course_direction')
+        return queryset
 
     @extend_schema(
         summary="Все Блок Курса ",
