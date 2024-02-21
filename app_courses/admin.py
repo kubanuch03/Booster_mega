@@ -40,17 +40,17 @@ class EducationBenefitAdmin(admin.ModelAdmin):
     search_fields = ['id']
 
 
-class CourseBlockAdmin(admin.ModelAdmin):
+class CourseProgramAdmin(admin.ModelAdmin):
     list_display = ['id','title','course_direction',]
     list_filter = ['id','course_direction',]
     search_fields = ['id','course_direction']
 
 
 
-class BlockSubheadingAdmin(admin.ModelAdmin):
-    list_display = ['id','title','block',]
-    list_filter = ['id','block',]
-    search_fields = ['id','block']
+class TopicProgramAdmin(admin.ModelAdmin):
+    list_display = ['id','title',]
+    list_filter = ['id',]
+    search_fields = ['id',]
 
 
 class TeacherTechnologyAdmin(admin.ModelAdmin):
@@ -64,8 +64,8 @@ admin.site.register(CourseDirection,CourseDirectionAdmin)
 admin.site.register(Course,CourseAdmin)
 admin.site.register(MajorBenefit,MajorBenefitAdmin)
 admin.site.register(EducationBenefit,EducationBenefitAdmin)
-admin.site.register(CourseBlock,CourseBlockAdmin)
-admin.site.register(BlockSubheading,BlockSubheadingAdmin)
+admin.site.register(CourseProgram,CourseProgramAdmin)
+admin.site.register(TopicProgram,TopicProgramAdmin)
 admin.site.register(TeacherTechnology,TeacherTechnologyAdmin)
 admin.site.register(AboutProfession,AboutProfessionAdmin)
 

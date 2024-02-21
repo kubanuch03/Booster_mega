@@ -28,12 +28,12 @@ urlpatterns = [
     path('detail/education/benefit/<int:pk>/',EducationBenefitDetailApiView.as_view(),name='detail-education-benefit'),
 
     # Course Block
-    path('list/course/block/',CourseBlockListApiView.as_view(),name='list-course-block'),
-    path('detail/course/block/<int:pk>/',CourseBlockDetailApiView.as_view(),name='detail-course-block'),
+    path('list/course_program/',CourseProgramListApiView.as_view(),name='list-course-block'),
+    path('detail/course_program/<int:pk>/',CourseProgramDetailApiView.as_view(),name='detail-course-block'),
 
     # Block Subhead
-    path('list/block/subhead/',BlockSubheadingListApiView.as_view(),name='list-block-subhead'),
-    path('detail/block/subhead/<int:pk>/',BlockSubheadingDetailApiView.as_view(),name='detail-block-subhead'),
+    path('list/topkik_program/',TopicProgramListApiView.as_view(),name='list-block-subhead'),
+    path('detail/topkik_program/<int:pk>/',TopicProgramDetailApiView.as_view(),name='detail-block-subhead'),
 
     # Teacher Technolog
     path('list/teacher/technology/',TeacherTechnologyListApiView.as_view(),name='list-teacher-technology'),

@@ -29,7 +29,7 @@ class CourseDirection(models.Model):
 
 class Course(models.Model):
     title = models.CharField(max_length=255)
-    description = models.CharField(max_length=255)
+    description = models.TextField()
     image = models.ImageField(upload_to='course_images/')
     extended_image = models.ImageField(upload_to='extended_course_images/')
     duration = models.CharField(max_length=255)
@@ -42,6 +42,7 @@ class Course(models.Model):
     direction = models.ForeignKey(CourseDirection, on_delete=models.CASCADE)
     teacher = models.ForeignKey(CourseTeacher, on_delete=models.CASCADE)
     about_profession = models.ForeignKey("AboutProfession", on_delete=models.CASCADE,)
+    course_program = models.ForeignKey("CourseProgram",on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = _("Курс")
@@ -85,6 +86,9 @@ class MajorBenefit(models.Model):
             models.Index(fields=['id']), 
             models.Index(fields=['title']),  
         ]
+    def __str__(self):
+        return f'{self.title}'
+    
 
 class EducationBenefit(models.Model):
     title = models.CharField(max_length=255)
@@ -102,14 +106,14 @@ class EducationBenefit(models.Model):
         return f'{self.title}'
 
 
-class CourseBlock(models.Model):
+class CourseProgram(models.Model):
     title = models.CharField(max_length=255)
-    description = models.TextField()
+    topic = models.ManyToManyField("TopicProgram")
     course_direction = models.ForeignKey(CourseDirection, on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = _("Блок Стеков")
-        verbose_name_plural = _("Блок Стеков")
+        verbose_name = _("Программа Курса")
+        verbose_name_plural = _("Программа Курсов")
         indexes = [
             models.Index(fields=['id']), 
             models.Index(fields=['title']),  
@@ -119,13 +123,12 @@ class CourseBlock(models.Model):
         return f'{self.title}'
 
 
-class BlockSubheading(models.Model):
+class TopicProgram(models.Model):
     title = models.CharField(max_length=255)
-    block = models.ForeignKey(CourseBlock, on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = _("Стеки")
-        verbose_name_plural = _("Стеки")
+        verbose_name = _("Тема курса")
+        verbose_name_plural = _("Темы курса")
         indexes = [
             models.Index(fields=['id']), 
             models.Index(fields=['title']),  
@@ -149,3 +152,6 @@ class TeacherTechnology(models.Model):
 
     def __str__(self):
         return f'{self.title}'
+    
+
+

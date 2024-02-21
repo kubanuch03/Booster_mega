@@ -6,8 +6,8 @@ from .models import (
     Course,
     MajorBenefit,
     EducationBenefit,
-    CourseBlock,
-    BlockSubheading,
+    CourseProgram,
+    TopicProgram,
     TeacherTechnology,
     AboutProfession
 
@@ -64,52 +64,47 @@ class CourseListSerializer(serializers.ModelSerializer):
                   ]
     
 
+class CourseProgramSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CourseProgram
+        fields = ['id','title','topic','course_direction']
 
 class CourseDetailSerializer(serializers.ModelSerializer):
     teacher = CourseTeacherSerializer()
     about_profession = AboutProfessionSerializer()
     direction = CourseDirectionSerializer()
+    course_program = CourseProgramSerializer()
     class Meta:
         model = Course
         fields = ['id','title','description','image','extended_image','duration','monthly_price',
                   'installment_price','lesson_duration','start_date','timetable',
-                  'free_spots','direction','teacher','about_profession',
+                  'free_spots','direction','teacher','about_profession','course_program',
                   ]
     def to_representation(self, instance):
         data_course = super().to_representation(instance)
         if isinstance(self.instance, list):
             return data_course
         
-        data_course['direction']={
-            'id': data_course['direction']['id'],
-            'title': data_course['direction']['title']
-        }
-        data_course['teacher']={
-            'id': data_course['teacher']['id'],
-            'first_name': data_course['teacher']['first_name'],
-            'last_name': data_course['teacher']['last_name']
-        }
-        data_course['about_profession']={
+        data_course['direction'] = CourseDirectionSerializer(instance.direction).data
+        data_course['teacher'] = CourseTeacherSerializer(instance.teacher).data
+        data_course['about_profession'] = AboutProfessionSerializer(instance.about_profession).data
+        data_course['course_program']={
             'id': data_course['about_profession']['id'],
             'title': data_course['about_profession']['title'],
-            'major_benefit': data_course['about_profession']['major_benefit'],
-            'major_education': data_course['about_profession']['major_education']
+            'topic': [{'id': topic.id, 'title': topic.title} for topic in instance.course_program.topic.all()],
+            'course_direction': data_course['course_program']['course_direction']
         }
         return data_course
 
-class CourseBlockSerializer(serializers.ModelSerializer):
+
+
+
+class TopicProgramSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = CourseBlock
-        fields = ['id','title','description','course_direction',]
-
-
-class BlockSubheadingSerializer(serializers.ModelSerializer):
-    block_name = serializers.CharField(source='block.title')
-
-    class Meta:
-        model = BlockSubheading
-        fields = ['id','title','block','block_name',]
+        model = CourseProgram
+        fields = ['id','title',]
 
 
 class TeacherTechnologySerializer(serializers.ModelSerializer):

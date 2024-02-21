@@ -9,8 +9,8 @@ from .models import (
     Course,
     MajorBenefit,
     EducationBenefit,
-    CourseBlock,
-    BlockSubheading,
+    CourseProgram,
+    TopicProgram,
     TeacherTechnology,
     AboutProfession
 )
@@ -22,8 +22,8 @@ from .serializers import (
     CourseDetailSerializer,
     MajorBenefitSerializer,
     EducationBenefitSerializer,
-    CourseBlockSerializer,
-    BlockSubheadingSerializer,
+    CourseProgramSerializer,
+    TopicProgramSerializer,
     TeacherTechnologySerializer,
     AboutProfessionSerializer
 )
@@ -228,19 +228,19 @@ class EducationBenefitDetailApiView(generics.RetrieveAPIView):
 #== Course Block ================================================================
 
 
-class CourseBlockListApiView(generics.ListAPIView):
-    queryset = CourseBlock.objects.all()
-    serializer_class = CourseBlockSerializer
+class CourseProgramListApiView(generics.ListAPIView):
+    queryset = CourseProgram.objects.all()
+    serializer_class = CourseProgramSerializer
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        queryset = CourseBlock.objects.select_related('course_direction')
+        queryset = CourseProgram.objects.select_related('course_direction')
         return queryset
 
     @extend_schema(
         summary="Все Блок Курса ",
         description=" Запрос на Все Блок Курса  ",
-        responses={200: CourseBlockSerializer(many=True)},
+        responses={200: CourseProgramSerializer(many=True)},
         operation_id="list_block_course",
         
     )
@@ -248,15 +248,15 @@ class CourseBlockListApiView(generics.ListAPIView):
         return super().get(request, *args, **kwargs)
 
 
-class CourseBlockDetailApiView(generics.RetrieveAPIView):
-    queryset = CourseBlock.objects.all()
-    serializer_class = CourseBlockSerializer
+class CourseProgramDetailApiView(generics.RetrieveAPIView):
+    queryset = CourseProgram.objects.all()
+    serializer_class = CourseProgramSerializer
     permission_classes = [permissions.AllowAny]
 
     @extend_schema(
         summary="Детальная информация Блок Курса",
         description="Детальная информация Блок Курса",
-        responses={200: CourseBlockSerializer()},
+        responses={200: CourseProgramSerializer()},
         operation_id="detail_sub_block_course",
         
     )
@@ -266,15 +266,15 @@ class CourseBlockDetailApiView(generics.RetrieveAPIView):
 #== Block Subhead ================================================================
 
 
-class BlockSubheadingListApiView(generics.ListAPIView):
-    queryset = BlockSubheading.objects.all()
-    serializer_class = BlockSubheadingSerializer
+class TopicProgramListApiView(generics.ListAPIView):
+    queryset = TopicProgram.objects.all()
+    serializer_class = TopicProgramSerializer
     permission_classes = [permissions.AllowAny]
 
     @extend_schema(
         summary="Все Под Блок Курса ",
         description=" Запрос на Все Под Блок Курса  ",
-        responses={200: BlockSubheadingSerializer(many=True)},
+        responses={200: TopicProgramSerializer(many=True)},
         operation_id="list_sub_block_course",
         
     )
@@ -282,15 +282,15 @@ class BlockSubheadingListApiView(generics.ListAPIView):
         return super().get(request, *args, **kwargs)
 
 
-class BlockSubheadingDetailApiView(generics.RetrieveAPIView):
-    queryset = BlockSubheading.objects.all()
-    serializer_class = BlockSubheadingSerializer
+class TopicProgramDetailApiView(generics.RetrieveAPIView):
+    queryset = TopicProgram.objects.all()
+    serializer_class = TopicProgramSerializer
     permission_classes = [permissions.AllowAny]
 
     @extend_schema(
         summary="Детальная информация Под Блок Курса",
         description="Детальная информация Под Блок Курса",
-        responses={200: BlockSubheadingSerializer()},
+        responses={200: TopicProgramSerializer()},
         operation_id="detail_sub_block_course_get",
         
     )
