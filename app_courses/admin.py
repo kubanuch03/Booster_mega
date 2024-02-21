@@ -10,44 +10,51 @@ class CourseTeacherAdmin(admin.ModelAdmin):
 
 
 class CourseDirectionAdmin(admin.ModelAdmin):
-    list_display = ['id','name',]
+    list_display = ['id','title',]
     list_filter = ['id',]
-    search_fields = ['id','name']
+    search_fields = ['id','title']
 
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ['id','name','direction','duration','start_date','teacher']
+    list_display = ['id','title','direction','duration','start_date','teacher']
     list_filter = ['id','direction','teacher','lesson_duration']
-    search_fields = ['id','name',]
+    search_fields = ['id','title',]
+
+
+class AboutProfessionAdmin(admin.ModelAdmin):
+    list_display = ['id','title',]
+    list_filter = ['id','course',]
+    search_fields = ['id']
+
 
 
 class MajorBenefitAdmin(admin.ModelAdmin):
-    list_display = ['id','name','course',]
-    list_filter = ['id','course',]
-    search_fields = ['id','course']
+    list_display = ['id','title',]
+    list_filter = ['id',]
+    search_fields = ['id']
 
 
 class EducationBenefitAdmin(admin.ModelAdmin):
-    list_display = ['id','name','course',]
-    list_filter = ['id','course',]
-    search_fields = ['id','course']
+    list_display = ['id','title',]
+    list_filter = ['id',]
+    search_fields = ['id']
 
 
 class CourseBlockAdmin(admin.ModelAdmin):
-    list_display = ['id','name','course_direction',]
+    list_display = ['id','title','course_direction',]
     list_filter = ['id','course_direction',]
     search_fields = ['id','course_direction']
 
 
 
 class BlockSubheadingAdmin(admin.ModelAdmin):
-    list_display = ['id','name','block',]
+    list_display = ['id','title','block',]
     list_filter = ['id','block',]
     search_fields = ['id','block']
 
 
 class TeacherTechnologyAdmin(admin.ModelAdmin):
-    list_display = ['id','name',]
+    list_display = ['id','title',]
     list_filter = ['id',]
     search_fields = ['id',]
 
@@ -60,4 +67,5 @@ admin.site.register(EducationBenefit,EducationBenefitAdmin)
 admin.site.register(CourseBlock,CourseBlockAdmin)
 admin.site.register(BlockSubheading,BlockSubheadingAdmin)
 admin.site.register(TeacherTechnology,TeacherTechnologyAdmin)
+admin.site.register(AboutProfession,AboutProfessionAdmin)
 

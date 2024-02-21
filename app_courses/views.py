@@ -11,18 +11,21 @@ from .models import (
     EducationBenefit,
     CourseBlock,
     BlockSubheading,
-    TeacherTechnology
+    TeacherTechnology,
+    AboutProfession
 )
 
 from .serializers import (
     CourseTeacherSerializer,
     CourseDirectionSerializer,
-    CourseSerializer,
+    CourseListSerializer,
+    CourseDetailSerializer,
     MajorBenefitSerializer,
     EducationBenefitSerializer,
     CourseBlockSerializer,
     BlockSubheadingSerializer,
-    TeacherTechnologySerializer
+    TeacherTechnologySerializer,
+    AboutProfessionSerializer
 )
 
 
@@ -96,18 +99,17 @@ class CourseDirectionDetailApiView(generics.RetrieveAPIView):
 
 class CourseListApiView(generics.ListAPIView):
     queryset = Course.objects.all()
-    serializer_class = CourseSerializer
+    serializer_class = CourseListSerializer
     permission_classes = [permissions.AllowAny]
 
     def get_queryset(self):
-        queryset = Course.objects.select_related('direction').all()
-        queryset = queryset.prefetch_related(Prefetch('teacher',queryset=CourseTeacher.objects.all()))
-        return super().get_queryset()
+        queryset = Course.objects.select_related('direction','teacher').all()
+        return queryset
 
     @extend_schema(
         summary="Все Курсы ",
         description=" Запрос на Все Курсы  ",
-        responses={200: CourseSerializer(many=True)},
+        responses={200: CourseListSerializer(many=True)},
         operation_id="list_course",
         
     )
@@ -117,13 +119,13 @@ class CourseListApiView(generics.ListAPIView):
 
 class CourseDetailApiView(generics.RetrieveAPIView):
     queryset = Course.objects.all()
-    serializer_class = CourseSerializer
+    serializer_class = CourseDetailSerializer
     permission_classes = [permissions.AllowAny]
 
     @extend_schema(
         summary="Детальная информация о курсе",
         description="Детальная информация о  курсе",
-        responses={200: CourseSerializer()},
+        responses={200: CourseDetailSerializer()},
         operation_id="detail_course",
         
     )
@@ -131,8 +133,24 @@ class CourseDetailApiView(generics.RetrieveAPIView):
         return super().get(request, *args, **kwargs)
 
 
-#== Major Benefit ================================================================
+#== About Profession  ================================================================
+class AboutProfessionListApiView(generics.ListAPIView):
+    queryset = AboutProfession.objects.all()
+    serializer_class = AboutProfessionSerializer
+    permission_classes = [permissions.AllowAny]
 
+    
+
+    @extend_schema(
+        summary="Все  Все Плюсы О Профессии",
+        description=" Запрос на Все Плюсы О Профессии",
+        responses={200: AboutProfessionSerializer(many=True)},
+        operation_id="list_about_profession",
+        
+    )
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+#== Major Benefit ================================================================
 
 class MajorBenefitListApiView(generics.ListAPIView):
     queryset = MajorBenefit.objects.all()

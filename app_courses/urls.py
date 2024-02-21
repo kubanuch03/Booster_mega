@@ -16,6 +16,9 @@ urlpatterns = [
     path('list/course/',CourseListApiView.as_view(),name='list-course'),
     path('detail/course/<int:pk>/',CourseDetailApiView.as_view(),name='detail-course'),
 
+    # About Profession 
+    path('list/about_profession/',AboutProfessionListApiView.as_view(),name='list-about-profession'),
+
     # Major Benefit
     path('list/major/benefit/',MajorBenefitListApiView.as_view(),name='list-major-benefit'),
     path('detail/major/benefit/<int:pk>/',MajorBenefitDetailApiView.as_view(),name='detail-major-benefit'),
