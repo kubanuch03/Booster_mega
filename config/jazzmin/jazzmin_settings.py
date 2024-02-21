@@ -16,7 +16,6 @@ JAZZMIN_SETTINGS = {
 
         {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
 
-        {"model": "app_users.CustomUser"},
         {"model": "app_courses.CourseTeacher"},
 
         # App with dropdown menu to all its models pages (Permissions checked against models)
@@ -30,7 +29,7 @@ JAZZMIN_SETTINGS = {
     # Additional links to include in the user menu on the top right ("app" url type is not allowed)
     "usermenu_links": [
         # {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
-        {"model": "app_users.CustomUser"},
+        # {"model": "app_users.CustomUser"},
     ],
 
     #############
@@ -66,16 +65,19 @@ JAZZMIN_SETTINGS = {
         "auth": "fas fa-users-cog",
         "app_users.CustomUser": "fas fa-user",
         "app_articles.Articles": "fas fa-newspaper",
+        "app_articles.ImageArticles": "fas fa-images",
         "app_events.Events": "fas fa-calendar-week",
         "app_reviews.Reviews": "fas fa-comment",
 
         "app_courses.Course": "fas fa-laptop-code",
-        "app_courses.CourseBlock": "fas fa-book",
-        "app_courses.BlockSubheading": "fas fa-file-alt",
+        "app_courses.CourseProgram": "fas fa-list-alt",
+        "app_courses.TopicProgram": "fas fa-file-alt",
         "app_courses.CourseDirection": "fas fa-code",
-        "app_courses.MajorBenefit": "fas fa-check-circle",
-        "app_courses.EducationBenefit": "fas fa-check-circle",
+        "app_courses.MajorBenefit": "fas fa-plus-circle",
+        "app_courses.EducationBenefit": "fas fa-plus-circle",
         "app_courses.CourseTeacher": "fas fa-graduation-cap",
+        "app_courses.AboutProfession": "fas fa-user-tie",
+        "app_courses.TeacherTechnology": "fas fa-network-wired",
 
         "app_miscellaneous.FAQ": "fas fa-comments",
         "app_miscellaneous.Gallery": "fas fa-images",

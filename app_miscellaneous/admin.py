@@ -8,7 +8,7 @@ from .models import (
 
 
 class ContactUsAdmin(admin.ModelAdmin):
-    list_display = ['name','id','phone_number','is_agreed',]
+    list_display = ['title','id','phone_number','is_agreed',]
     list_filter = ['id','is_agreed',]
 
 

@@ -3,10 +3,10 @@ from django.utils.translation import gettext_lazy as _
 
 
 class CourseTeacher(models.Model):
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    description = models.TextField()
-    image = models.ImageField(upload_to='teacher_images/')
+    first_name = models.CharField(max_length=255,verbose_name='Имя')
+    last_name = models.CharField(max_length=255,verbose_name='Фамилия')
+    description = models.TextField(verbose_name='Описание')
+    image = models.ImageField(upload_to='teacher_images/',verbose_name='Фотография')
 
     class Meta:
         verbose_name = _("Преподователь")
@@ -17,7 +17,7 @@ class CourseTeacher(models.Model):
 
 
 class CourseDirection(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255,verbose_name='Заголовок')
 
     class Meta:
         verbose_name = _("Направление")
@@ -28,21 +28,21 @@ class CourseDirection(models.Model):
 
 
 class Course(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-    image = models.ImageField(upload_to='course_images/')
-    extended_image = models.ImageField(upload_to='extended_course_images/')
-    duration = models.CharField(max_length=255)
-    monthly_price = models.FloatField()
-    installment_price = models.FloatField()
-    lesson_duration = models.CharField(max_length=255)
-    start_date = models.DateTimeField()
-    timetable = models.CharField(max_length=255)
-    free_spots = models.IntegerField()
-    direction = models.ForeignKey(CourseDirection, on_delete=models.CASCADE)
-    teacher = models.ForeignKey(CourseTeacher, on_delete=models.CASCADE)
-    about_profession = models.ForeignKey("AboutProfession", on_delete=models.CASCADE,)
-    course_program = models.ForeignKey("CourseProgram",on_delete=models.CASCADE)
+    title = models.CharField(max_length=255,verbose_name='Заголовок')
+    description = models.TextField(verbose_name='Описание')
+    image = models.ImageField(upload_to='course_images/',verbose_name='Картинка')
+    extended_image = models.ImageField(upload_to='extended_course_images/',verbose_name='Иконка')
+    duration = models.CharField(max_length=255,verbose_name='Продолжительность')
+    monthly_price = models.FloatField(verbose_name='Месячная цена')
+    installment_price = models.FloatField(verbose_name='Цена в Рассрочку')
+    lesson_duration = models.CharField(max_length=255,verbose_name='Продолжительность урока')
+    start_date = models.DateTimeField(verbose_name='Старт Курса')
+    timetable = models.CharField(max_length=255,verbose_name='Расписание')
+    free_spots = models.IntegerField(verbose_name='Свободные места')
+    direction = models.ForeignKey(CourseDirection, on_delete=models.CASCADE,verbose_name='Направление')
+    teacher = models.ForeignKey(CourseTeacher, on_delete=models.CASCADE,verbose_name='Преподователи')
+    about_profession = models.ForeignKey("AboutProfession", on_delete=models.CASCADE,verbose_name='О профессии')
+    course_program = models.ForeignKey("CourseProgram",on_delete=models.CASCADE,verbose_name='Программа курса')
 
     class Meta:
         verbose_name = _("Курс")
@@ -57,11 +57,11 @@ class Course(models.Model):
 
 
 class AboutProfession(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-    image = models.ImageField(upload_to='major_benefit_images/')
-    major_benefit = models.ManyToManyField("MajorBenefit")
-    major_education = models.ManyToManyField("EducationBenefit")
+    title = models.CharField(max_length=255,verbose_name='Заголовок')
+    description = models.TextField(verbose_name='Описание')
+    image = models.ImageField(upload_to='major_benefit_images/',verbose_name='Картинка')
+    major_benefit = models.ManyToManyField("MajorBenefit",verbose_name='Плюсы профессии')
+    major_education = models.ManyToManyField("EducationBenefit",verbose_name='Плюсы Курса')
 
     class Meta:
         verbose_name = _("О Профессии")
@@ -76,8 +76,8 @@ class AboutProfession(models.Model):
 
 
 class MajorBenefit(models.Model):
-    title = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='major_benefit/')
+    title = models.CharField(max_length=255,verbose_name='Заголовок')
+    image = models.ImageField(upload_to='major_benefit/',verbose_name='Иконка')
 
     class Meta:
         verbose_name = 'Плюсы профессии'
@@ -91,8 +91,8 @@ class MajorBenefit(models.Model):
     
 
 class EducationBenefit(models.Model):
-    title = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='education_benefit/')
+    title = models.CharField(max_length=255,verbose_name='Заголовок')
+    image = models.ImageField(upload_to='education_benefit/',verbose_name='Иконка')
 
     class Meta:
         verbose_name = _("Плюсы Курса")
@@ -107,9 +107,9 @@ class EducationBenefit(models.Model):
 
 
 class CourseProgram(models.Model):
-    title = models.CharField(max_length=255)
-    topic = models.ManyToManyField("TopicProgram")
-    course_direction = models.ForeignKey(CourseDirection, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255,verbose_name='Заголовка')
+    topic = models.ManyToManyField("TopicProgram",verbose_name='Темы')
+    course_direction = models.ForeignKey(CourseDirection, on_delete=models.CASCADE,verbose_name='Направление Курса')
 
     class Meta:
         verbose_name = _("Программа Курса")
@@ -124,7 +124,7 @@ class CourseProgram(models.Model):
 
 
 class TopicProgram(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255,verbose_name='Загаловка')
 
     class Meta:
         verbose_name = _("Тема курса")
@@ -139,8 +139,8 @@ class TopicProgram(models.Model):
 
 
 class TeacherTechnology(models.Model):
-    title = models.CharField(max_length=255)
-    teachers = models.ManyToManyField(CourseTeacher)
+    title = models.CharField(max_length=255,verbose_name='Загаловка')
+    teachers = models.ManyToManyField(CourseTeacher,verbose_name='Преподователи')
     indexes = [
             models.Index(fields=['id']), 
             models.Index(fields=['title']),  

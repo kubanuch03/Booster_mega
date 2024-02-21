@@ -60,7 +60,7 @@ class CourseListSerializer(serializers.ModelSerializer):
         model = Course
         fields = ['id','title','description','image','extended_image','duration','monthly_price',
                   'installment_price','lesson_duration','start_date','timetable',
-                  'free_spots','direction','teacher','about_profession',
+                  'free_spots','direction','teacher','about_profession','course_program',
                   ]
     
 

@@ -3,25 +3,26 @@ from django.utils.translation import gettext_lazy as _
 
 
 class ContactUs(models.Model):
-    name = models.CharField(max_length=255)
-    phone_number = models.CharField(max_length=20)
-    is_agreed = models.BooleanField()
+    title = models.CharField(max_length=255,verbose_name='Заголовок')
+    phone_number = models.CharField(max_length=20,verbose_name='Номер телефона')
+    is_agreed = models.BooleanField(verbose_name='Соглашение')
 
     class Meta:
         verbose_name = ("Контакты")
         verbose_name_plural = ("Контакты")
+        ordering = ['-id']
         indexes = [
             models.Index(fields=['id']), 
-            models.Index(fields=['name']),  
+            models.Index(fields=['title']),  
         ]
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.title}'
 
 
 class FAQ(models.Model):
-    title = models.CharField(max_length=255)
-    response = models.TextField()
+    title = models.CharField(max_length=255,verbose_name='Заголовок Вопроса')
+    response = models.TextField(verbose_name='Ответ')
 
     class Meta:
         verbose_name = _("FAQ")
@@ -36,8 +37,10 @@ class FAQ(models.Model):
 
 
 class Gallery(models.Model):
-    image = models.ImageField(upload_to='gallery_images/')
-    to_show = models.BooleanField()
+    image = models.ImageField(upload_to='gallery_images/',verbose_name='Картинка')
+    to_show = models.BooleanField(verbose_name='Показать')
+    ordering = ['-id']
+
 
     class Meta:
         verbose_name = _("Галерея")
