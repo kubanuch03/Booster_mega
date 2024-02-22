@@ -9,6 +9,14 @@ class CourseTeacherAdmin(admin.ModelAdmin):
     search_fields = ['id','first_name']
 
 
+class TeacherTechnologyAdmin(admin.ModelAdmin):
+    list_display = ['id',]
+    list_filter = ['id',]
+    search_fields = ['id',]
+
+
+
+
 class CourseDirectionAdmin(admin.ModelAdmin):
     list_display = ['id','title',]
     list_filter = ['id',]
@@ -53,10 +61,7 @@ class TopicProgramAdmin(admin.ModelAdmin):
     search_fields = ['id',]
 
 
-class TeacherTechnologyAdmin(admin.ModelAdmin):
-    list_display = ['id','title',]
-    list_filter = ['id',]
-    search_fields = ['id',]
+
 
 
 admin.site.register(CourseTeacher,CourseTeacherAdmin)

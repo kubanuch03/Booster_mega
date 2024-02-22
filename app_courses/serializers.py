@@ -19,7 +19,21 @@ class CourseTeacherSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CourseTeacher
-        fields = ['id','first_name','last_name','description','image']
+        fields = ['id','first_name','last_name','description','image','technology']
+
+    def to_representation(self, instance):
+        data_course = super().to_representation(instance)        
+        data_course['technology'] = TeacherTechnologySerializer(instance.technology).data
+        
+        return data_course
+
+class TeacherTechnologySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TeacherTechnology
+        fields = ['id','technology',]
+
+
+
 
 
 class CourseDirectionSerializer(serializers.ModelSerializer):
@@ -70,6 +84,7 @@ class CourseProgramSerializer(serializers.ModelSerializer):
         model = CourseProgram
         fields = ['id','title','topic','course_direction']
 
+
 class CourseDetailSerializer(serializers.ModelSerializer):
     teacher = CourseTeacherSerializer()
     about_profession = AboutProfessionSerializer()
@@ -83,9 +98,7 @@ class CourseDetailSerializer(serializers.ModelSerializer):
                   ]
     def to_representation(self, instance):
         data_course = super().to_representation(instance)
-        if isinstance(self.instance, list):
-            return data_course
-        
+               
         data_course['direction'] = CourseDirectionSerializer(instance.direction).data
         data_course['teacher'] = CourseTeacherSerializer(instance.teacher).data
         data_course['about_profession'] = AboutProfessionSerializer(instance.about_profession).data
@@ -103,11 +116,7 @@ class CourseDetailSerializer(serializers.ModelSerializer):
 class TopicProgramSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = CourseProgram
+        model = TopicProgram
         fields = ['id','title',]
 
 
-class TeacherTechnologySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TeacherTechnology
-        fields = ['id','title','teachers',]

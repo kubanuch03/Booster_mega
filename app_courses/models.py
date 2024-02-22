@@ -7,13 +7,36 @@ class CourseTeacher(models.Model):
     last_name = models.CharField(max_length=255,verbose_name='Фамилия')
     description = models.TextField(verbose_name='Описание')
     image = models.ImageField(upload_to='teacher_images/',verbose_name='Фотография')
-
+    technology = models.ManyToManyField('TeacherTechnology',verbose_name='Технологии')
     class Meta:
         verbose_name = _("Преподователь")
         verbose_name_plural = _("Преподователи")
+        indexes = [
+            models.Index(fields=['id']), 
+            models.Index(fields=['first_name']),  
+        ]
 
     def __str__(self):
         return f'{self.first_name}'
+    
+
+class TeacherTechnology(models.Model):
+    title = models.CharField(max_length=255,verbose_name='Технологии',)
+    direction = models.ForeignKey("CourseDirection", on_delete=models.CASCADE,blank=True,verbose_name="Напрвление")
+    indexes = [
+            models.Index(fields=['id']), 
+            models.Index(fields=['title']), 
+        ]
+
+    class Meta:
+        verbose_name = _("Технология Преподователя")
+        verbose_name_plural = _("Технологии Преподователей")
+
+    def __str__(self):
+        return f'{self.title}'
+    
+
+
 
 
 class CourseDirection(models.Model):
@@ -138,20 +161,7 @@ class TopicProgram(models.Model):
         return f'{self.title}'
 
 
-class TeacherTechnology(models.Model):
-    title = models.CharField(max_length=255,verbose_name='Загаловка')
-    teachers = models.ManyToManyField(CourseTeacher,verbose_name='Преподователи')
-    indexes = [
-            models.Index(fields=['id']), 
-            models.Index(fields=['title']),  
-        ]
 
-    class Meta:
-        verbose_name = _("Технология Преподователя")
-        verbose_name_plural = _("Технологии Преподователей")
-
-    def __str__(self):
-        return f'{self.title}'
     
 
 

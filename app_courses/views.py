@@ -12,7 +12,7 @@ from .models import (
     CourseProgram,
     TopicProgram,
     TeacherTechnology,
-    AboutProfession
+    AboutProfession,
 )
 
 from .serializers import (
@@ -25,7 +25,7 @@ from .serializers import (
     CourseProgramSerializer,
     TopicProgramSerializer,
     TeacherTechnologySerializer,
-    AboutProfessionSerializer
+    AboutProfessionSerializer,
 )
 
 
@@ -142,8 +142,26 @@ class AboutProfessionListApiView(generics.ListAPIView):
     
 
     @extend_schema(
-        summary="Все  Все Плюсы О Профессии",
-        description=" Запрос на Все Плюсы О Профессии",
+        summary="Все   О Профессии",
+        description=" Запрос на О Профессии",
+        responses={200: AboutProfessionSerializer(many=True)},
+        operation_id="list_about_profession",
+        
+    )
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+    
+
+class AboutProfessionDetailApiView(generics.RetrieveAPIView):
+    queryset = AboutProfession.objects.all()
+    serializer_class = AboutProfessionSerializer
+    permission_classes = [permissions.AllowAny]
+
+    
+
+    @extend_schema(
+        summary="О Профессии",
+        description="О Профессии",
         responses={200: AboutProfessionSerializer(many=True)},
         operation_id="list_about_profession",
         
@@ -328,3 +346,5 @@ class TeacherTechnologyDetailApiView(generics.RetrieveAPIView):
     )
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
+    
+

@@ -18,6 +18,7 @@ urlpatterns = [
 
     # About Profession 
     path('list/about_profession/',AboutProfessionListApiView.as_view(),name='list-about-profession'),
+    path('detail/about_profession/<int:pk>/',AboutProfessionDetailApiView.as_view(),name='detail-about-profession'),
 
     # Major Benefit
     path('list/major/benefit/',MajorBenefitListApiView.as_view(),name='list-major-benefit'),
@@ -32,10 +33,14 @@ urlpatterns = [
     path('detail/course_program/<int:pk>/',CourseProgramDetailApiView.as_view(),name='detail-course-block'),
 
     # Block Subhead
-    path('list/topkik_program/',TopicProgramListApiView.as_view(),name='list-block-subhead'),
-    path('detail/topkik_program/<int:pk>/',TopicProgramDetailApiView.as_view(),name='detail-block-subhead'),
+    path('list/topik_program/',TopicProgramListApiView.as_view(),name='list-block-subhead'),
+    path('detail/topik_program/<int:pk>/',TopicProgramDetailApiView.as_view(),name='detail-block-subhead'),
 
-    # Teacher Technolog
+    # Teacher Technology
+    path('list/teacher/technology/',TeacherTechnologyListApiView.as_view(),name='list-teacher-technology'),
+    path('detail/teacher/technology/<int:pk>/',TeacherTechnologyDetailApiView.as_view(),name='detail-teacher-technology'),
+
+    # Technolog
     path('list/teacher/technology/',TeacherTechnologyListApiView.as_view(),name='list-teacher-technology'),
     path('detail/teacher/technology/<int:pk>/',TeacherTechnologyDetailApiView.as_view(),name='detail-teacher-technology'),
 
