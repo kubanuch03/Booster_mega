@@ -14,23 +14,26 @@ from .models import (
 )
 
 
+class TeacherTechnologySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TeacherTechnology
+        fields = ['id','title','direction']
+
 
 class CourseTeacherSerializer(serializers.ModelSerializer):
+    technology = TeacherTechnologySerializer(many=True)
 
     class Meta:
         model = CourseTeacher
         fields = ['id','first_name','last_name','description','image','technology']
 
     def to_representation(self, instance):
-        data_course = super().to_representation(instance)        
-        data_course['technology'] = TeacherTechnologySerializer(instance.technology).data
+        data_course = super().to_representation(instance)      
+          
+        data_course['technology'] = TeacherTechnologySerializer(instance.technology.all(),many=True).data
         
         return data_course
 
-class TeacherTechnologySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TeacherTechnology
-        fields = ['id','technology',]
 
 
 
